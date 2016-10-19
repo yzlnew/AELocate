@@ -5,14 +5,16 @@ geigerSolver::geigerSolver(double *LocOfSensor,double *TimeOfArrival,float *Limi
 	sensorNumber=NumOfSensors;
 	sonicSpeed = SpeedOfSound;
 	spaceLimit << *LimitOfSpace, *(LimitOfSpace + 1), *(LimitOfSpace + 2);
-	arrivalTime = VectorXd::Zero(sensorNumber);
-	sensorLoc = Matrix<double, Dynamic, 3>::Zero(sensorNumber, 3);
-	for(int i=0;i<NumOfSensors;i++){
-		arrivalTime(i) = *(TimeOfArrival + i);
-		sensorLoc(i,0) = *(LocOfSensor + 3 * i + 0);
-		sensorLoc(i,1) = *(LocOfSensor + 3 * i + 1); 
-		sensorLoc(i,2) = *(LocOfSensor + 3 * i + 2);
-	}
+	//arrivalTime = VectorXd::Zero(sensorNumber);
+	//sensorLoc = MatrixX3d::Zero(sensorNumber, 3);
+	arrivalTime=Map<VectorXd>(TimeOfArrival, sensorNumber);
+	sensorLoc = Map<Matrix3Xd>(LocOfSensor, 3,sensorNumber).transpose();
+	//for(int i=0;i<NumOfSensors;i++){
+		//arrivalTime(i) = *(TimeOfArrival + i);
+		//sensorLoc(i,0) = *(LocOfSensor + 3 * i + 0);
+		//sensorLoc(i,1) = *(LocOfSensor + 3 * i + 1); 
+		//sensorLoc(i,2) = *(LocOfSensor + 3 * i + 2);
+	//}
 }
 
 double* geigerSolver::doSolve() {
