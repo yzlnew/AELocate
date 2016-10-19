@@ -9,7 +9,8 @@ using namespace std;
 
 class sphereSolver{
 private:
-	Matrix<double, Dynamic, 2> sensorLoc;	//传感器坐标
+	Matrix<double, Dynamic, 2> sensorLoc;	//传感器的球面坐标
+	Matrix<double, Dynamic, 3> sensorLocXYZ;//传感器的三维直角坐标 
 	VectorXd arrivalTime;					//到达时间
 	double radius;							//球面的半径
 	int sensorNumber;
