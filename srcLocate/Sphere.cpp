@@ -14,10 +14,9 @@ sphereSolver::sphereSolver(double *LocOfSensor,double *TimeOfArrival,
 	sensorNumber=NumOfSensors;
 	sonicSpeed = SpeedOfSound;
 	radius = Radius;
-//	arrivalTime = VectorXd::Zero(sensorNumber);
-//	sensorLoc = MatrixX2d::Zero(sensorNumber, 2);
+	// arrivalTime = VectorXd::Zero(sensorNumber);
+	// sensorLoc = MatrixX2d::Zero(sensorNumber, 2);
 	sensorLocXYZ = MatrixX3d::Zero(sensorNumber, 3);
-
 	arrivalTime = Map<VectorXd>(TimeOfArrival, sensorNumber);
 	/*因为Eigen的Map是按列存的，所以需要转置*/
 	sensorLoc = Map<Matrix3Xd>(LocOfSensor, 3, sensorNumber).transpose();
@@ -39,6 +38,16 @@ sphereSolver::sphereSolver(double *LocOfSensor,double *TimeOfArrival,
  * 球面定位求解函数
  * @return 定位结果的三维直角坐标
  */
-//double sphereSolver::doSolve(){
-//
-//}
+double sphereSolver::doSolve(){
+	VectorXd b;
+	for(int i=0;i<NumOfSensors;i++){
+		b(i) = radius * radius * (1 - 2 * pow(sonicSpeed*arrivalTime(i)/(2*radius) ,2));
+	}
+
+	VectorXd resVec =  A.colPivHouseholderQr().solve(B);
+	resVec = radius * resVec /(sqrt(resVec.array().pow(2).sum()));
+
+	LocRes[0] = resVec(0);
+	LocRes[1] = resVec(1);
+	LocRes[2] = resVec(2);
+}

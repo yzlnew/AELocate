@@ -19,9 +19,5 @@ public:
 	sphereSolver(double *LocOfSensor,double *TimeOfArrival,
 						float Radius,int NumOfSensors,float SpeedOfSound);	//构造函数
 	double* doSolve();						//求解函数
-	double dist(RowVector2d, RowVector2d);	//求球面距离
 	double LocRes[3] = { 0,0,0 };			//定位结果
-	bool isAccurate = true;					//是否准确的标志位，默认为真
-	void resRevised();						//当结果有偏离时，修正函数
-	bool isInBox();							//判断是否在体内
 };
