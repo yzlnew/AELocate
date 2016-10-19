@@ -26,15 +26,10 @@ double* geigerSolver::doSolve() {
 	allDist.fill(0);
 	Matrix<double, Dynamic, 4> A;
 	A = Matrix<double, Dynamic, 4>::Ones(this->sensorNumber, 4);
-	//A.resize(this->sensorNumber, 4);
-	//A.fill(0);
 	VectorXd B;
 	B = VectorXd::Ones(this->sensorNumber);
-	//B.resize(this->sensorNumber, 1);
-	//B.fill(0);
 	VectorXd delta;
 	delta = VectorXd::Ones(this->sensorNumber);
-	//delta.fill(0);
 
 	for (int i = 0; i < sensorNumber; i++) {
 		allDist(i) = pdist(iterationPoint, sensorLoc.row(i));

@@ -9,7 +9,7 @@ using namespace std;
 
 class geigerSolver{
 private:
-	MatrixX3d sensorLoc;	//传感器坐标
+	MatrixX3d sensorLoc;					//传感器坐标
 	VectorXd arrivalTime;					//到达时间
 	Vector3d spaceLimit;					//试件的空间尺寸
 	int sensorNumber;

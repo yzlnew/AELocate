@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Geiger.h"
+#include "Sphere.h"
 using namespace Eigen;
 using namespace std;
 
@@ -20,9 +21,10 @@ int main()
     }
 
     NumOfSensors = 3;
-    int Radius = 1000;
+	SpeedOfSound = 3000 * 1000;
+    float Radius = 1000;
     double LocOfSensors2[9] = {PI/2, 0 , PI/2, PI/2 , 0, 0};
-    double TimeOfArrival2[3] = {0.000349065850398866,0.000349065850398866,0.000261799387799149}
+	double TimeOfArrival2[3] = { 0.000349065850398866,0.000349065850398866,0.000261799387799149 };
     cout<<"Sphere test"<<endl;
     sphereSolver Test2(LocOfSensors2,TimeOfArrival2,Radius,NumOfSensors,SpeedOfSound);
     Res = Test2.doSolve();
