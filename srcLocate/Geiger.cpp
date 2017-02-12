@@ -73,6 +73,51 @@ double* geigerSolver::doSolve() {
 	return LocRes;
 }
 
+double* geigerSolver::doSolvePlane(){
+	RowVector3d iterationPoint=spaceLimit.transpose()/2; //初始迭代点设置为物件中心
+	double a = 0.95;
+	double b = 0.95;
+	int step_length = 5;
+	double scale = iterationPoint.maxCoeff();
+	int step = 0;
+	double T,TI,TE;
+	TI = 10; TE = 0.001;
+
+	T = TI;
+	double Pre, Cur,Delta,potential;
+	while (T>TE)
+	{
+		while (step<step_length)
+		{
+			Pre = targetFunc(iterationPoint);
+			RowVector3d newPoint = iterationPoint + scale*RowVector3d::Random();
+			Cur = targetFunc(newPoint);
+			Delta = Cur - Pre;
+
+			if (Delta<0)
+			{
+				potential = 1;
+			}
+			else
+			{
+				potential = exp(-Delta / T);
+			}
+			double r = rand() / (float)RAND_MAX;
+			if (potential>r)
+			{
+				iterationPoint = newPoint;
+			}
+			step++;
+		}
+		T = a*T;
+		scale = b*scale;
+	}
+	LocRes[0] = iterationPoint(0);
+	LocRes[1] = iterationPoint(1);
+	LocRes[2] = iterationPoint(2);
+	return LocRes;
+}
+
 double geigerSolver::pdist(RowVector3d r1, RowVector3d r2) {
 	return sqrt(((r1 - r2).cwiseProduct(r1 - r2)).sum());
 }
@@ -115,7 +160,8 @@ bool geigerSolver::isInBox() {
 double geigerSolver::targetFunc(RowVector3d rv) {
 	double Res=0;
 	for (int i = 0; i < sensorNumber; i++) {
-		Res=Res+abs(pdist(rv, sensorLoc.row(i))-this->sonicSpeed*(this->arrivalTime(i)));
+		double temp = pdist(rv, sensorLoc.row(i)) - this->sonicSpeed*(this->arrivalTime(i));
+		Res=Res+temp*temp;
 	}
 	return Res;
 }
