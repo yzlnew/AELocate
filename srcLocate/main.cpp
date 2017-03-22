@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Geiger.h"
 #include "Sphere.h"
+#include "Plane.h"
 using namespace Eigen;
 using namespace std;
 
@@ -31,4 +32,16 @@ int main()
     for(int i=0;i<3;i++){
         cout<<*(Res+i)<<endl;
     }
+
+	NumOfSensors = 3;
+	SpeedOfSound = 3000 * 1000;
+	double LocOfSensors3[6] = { 0,0,0,100,100,0 };
+	double TimeOfArrival3[3] = { 1242e-7,1290e-7,1298e-7 };
+	float LimitOfSpace3[2] = { 100,100 };
+	planeSolver Test3(LocOfSensors3, TimeOfArrival3, LimitOfSpace3, NumOfSensors, SpeedOfSound);
+	cout << "Plane test" << endl;
+	Res = Test3.doSolve();
+	for (int i = 0; i<2; i++) {
+		cout << *(Res + i) << endl;
+	}
 }
