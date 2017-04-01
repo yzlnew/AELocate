@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hello!</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="球面定位算法">球面定位算法</h1>
+
+
+
+<h2 id="问题描述">问题描述</h2>
+
+<p>假设有 N 个传感器，第 i 个传感器坐标为<script type="math/tex" id="MathJax-Element-1">(R,\theta ,\varphi)</script>。其中 <script type="math/tex" id="MathJax-Element-2">R</script> 是球面的半径，<script type="math/tex" id="MathJax-Element-3">\theta ,\varphi</script>定义见<a href="https://zh.wikipedia.org/wiki/%E7%90%83%E5%BA%A7%E6%A8%99%E7%B3%BB">维基百科</a>。</p>
+
+<p>对于一个声发射源，第 i 个传感器测得的到达时间为<script type="math/tex" id="MathJax-Element-4">t_i</script>。</p>
+
+<p>声速为 v。</p>
+
+<p>求声发射源的位置<script type="math/tex" id="MathJax-Element-5">(x,y,z)</script>。</p>
+
+
+
+<h2 id="求解过程">求解过程</h2>
+
+<p>作一个过声发射源点 P 、第 i 个传感器 <script type="math/tex" id="MathJax-Element-6">S_i</script> 的球上大圆，如图。</p>
+
+<p><img src="http://o9gmysn8m.bkt.clouddn.com/14764346470839.png" alt="" title=""></p>
+
+<p>弧长<script type="math/tex" id="MathJax-Element-7">PS_i</script>就是声波走过的距离<script type="math/tex" id="MathJax-Element-8">vt_i</script>，弦长<script type="math/tex" id="MathJax-Element-9">PS_i</script>是两个坐标的直线距离<script type="math/tex" id="MathJax-Element-10">\sqrt{(x-x_i)^2+(y-y_i)^2+(z-z_i)^2}</script>。</p>
+
+<p>根据圆内角的关系，可以得到，对于第 i 个传感器，满足 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-11">
+\sqrt{(x-x_i)^2+(y-y_i)^2+(z-z_i)^2}/2R=\sin(vt_i/2R)
+</script></p>
+
+<p>声发射源和传感器坐标都是球面上的点，满足约束条件 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-12">
+x^2+y^2+z^2=R^2
+</script></p>
+
+<p>可以化简为 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-13">
+x_ix+y_iy+z_iz=-2R^2\sin^2(vt_i/2R)+R^2
+</script></p>
+
+<p>令<script type="math/tex" id="MathJax-Element-14">b_i=-2R^2\sin^2(vt_i/2R)+R^2</script></p>
+
+<p>又有球面坐标的关系 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-15">
+x_i = R\sin \theta \cos \varphi \\
+y_i = R\sin \theta \sin \varphi \\
+z_i = R\cos \theta
+</script></p>
+
+<p>即求解 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-16">
+Ax=b
+</script></p>
+
+<p>其中 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-17">
+A = \left[
+\begin{array}{ccc}
+x_1 & y_1 & z_1 \\
+x_2 & y_2 & z_2 \\
+\vdots & \vdots & \vdots \\
+x_n & y_n & z_n \\
+\end{array} \right]
+</script></p>
+
+
+
+<p><script type="math/tex; mode=display" id="MathJax-Element-18">
+b=\left[
+\begin{array}{c}
+b_1 \\
+b_2 \\
+\vdots \\
+b_n
+\end{array} \right]
+</script></p>
+
+<p>则 <br>
+<script type="math/tex; mode=display" id="MathJax-Element-19">
+x= (A^TA)^{-1}A^Tb
+</script></p></div></body>
+</html>
