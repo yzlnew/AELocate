@@ -2,6 +2,7 @@
 #include "Geiger.h"
 #include "Sphere.h"
 #include "Plane.h"
+#include "Bottom.h"
 using namespace Eigen;
 using namespace std;
 
@@ -41,6 +42,19 @@ int main()
 	planeSolver Test3(LocOfSensors3, TimeOfArrival3, LimitOfSpace3, NumOfSensors, SpeedOfSound);
 	cout << "Plane test" << endl;
 	Res = Test3.doSolve();
+	for (int i = 0; i<2; i++) {
+		cout << *(Res + i) << endl;
+	}
+
+	NumOfSensors = 3;
+	SpeedOfSound = 3000 * 1000;
+	double LocOfSensors4[6] = { 0,100,100,0,60,80 };
+	double TimeOfArrival4[3] = { 1242e-7,1290e-7,1298e-7 };
+	double Height = 100;
+	double Radius2 = 100;
+	bottomSolver Test4(LocOfSensors4, TimeOfArrival4, NumOfSensors, SpeedOfSound, Height, Radius2);
+	cout << "Bottom test" << endl;
+	Res = Test4.doSolve();
 	for (int i = 0; i<2; i++) {
 		cout << *(Res + i) << endl;
 	}
