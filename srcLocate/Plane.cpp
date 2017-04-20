@@ -1,7 +1,8 @@
 #include "Plane.h"
 #include <math.h>
 
-planeSolver::planeSolver(double *LocOfSensor, double *TimeOfArrival, float *LimitOfSpace, int NumOfSensors, float SpeedOfSound) {
+planeSolver::planeSolver(double *LocOfSensor, double *TimeOfArrival, float *LimitOfSpace, 
+							int NumOfSensors, float SpeedOfSound) {
 	sensorNumber = NumOfSensors;
 	sonicSpeed = SpeedOfSound;
 	spaceLimit << *LimitOfSpace, *(LimitOfSpace + 1);

@@ -845,6 +845,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <ul>
 <li><code>Plane.h</code>包含平面定位类定义</li>
 <li><code>Plane.cpp</code>包含平面定位的类成员实现</li>
+<li><code>Bottom.h</code>包含罐底定位类定义</li>
+<li><code>Bottom.cpp</code>包含平面定位的类成员实现</li>
 </ul>
 
 <h2 id="toc_2">使用方法</h2>
@@ -853,7 +855,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 <h2 id="toc_3">其他事项</h2>
 
-<p>同样可以用来进行罐底的定位。</p>
+<ul>
+<li>进行罐底的定位的时候，坐标系建在圆底的中心。</li>
+<li>输入传感器的平面二维坐标和布置的高度，算法会把传感器坐标展到底面的二维坐标，再进行定位。</li>
+</ul>
 
 </div></body>
 
