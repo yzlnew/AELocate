@@ -45,4 +45,4 @@
 
 ## CMake
 
-设置环境变量`EIGEN3_INCLUDE_DIR`为`Eigen`的`include`文件夹。
+设置环境变量`EIGEN3_INCLUDE_DIR`为`Eigen`的`include`文件夹。
