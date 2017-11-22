@@ -13,7 +13,7 @@ planeSolver::planeSolver(double *LocOfSensor, double *TimeOfArrival, float *Limi
 }
 
 double* planeSolver::doSolve() {
-	RowVector2d iterationPoint = sensorLoc.colwise().sum() / sensorNumber;			//传感器的中心点设为初始迭代点
+	RowVector2d iterationPoint = sensorLoc.colwise().sum() / sensorNumber;		//传感器的中心点设为初始迭代点
 	RowVector2d temp;
 	int iterationStep = 3;														//设置迭代步数，推荐2以上
 	VectorXd allDist;															//迭代点到各个传感器的距离向量

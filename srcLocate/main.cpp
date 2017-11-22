@@ -10,9 +10,9 @@ using namespace std;
 int main()
 {
 	double LocOfSensors[12] = { 0,50,100,0,50,0,50,0,0,50,0,100 };							//按探头顺序存储的当前计算所用的传感器位置
-    int NumOfSensors = 4;																			//使用的传感器数量，当前为5
-	float LimitOfSpace[3] = { 100,100,100 };															//三维体的空间限制
-    float SpeedOfSound=3200*1000;																	//声速
+    int NumOfSensors = 4;																	//使用的传感器数量，当前为5
+	float LimitOfSpace[3] = { 100,100,100 };												//三维体的空间限制
+    float SpeedOfSound=3200*1000;															//声速
     double TimeOfArrival[4]={1242e-7,1290e-7,1298e-7,1385e-7 };								//依次的到达时间，单位为s
     
 	geigerSolver Test(LocOfSensors, TimeOfArrival, LimitOfSpace, NumOfSensors, SpeedOfSound);
