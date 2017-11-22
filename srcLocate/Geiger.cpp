@@ -18,10 +18,10 @@ geigerSolver::geigerSolver(double *LocOfSensor,double *TimeOfArrival,float *Limi
 }
 
 double* geigerSolver::doSolve() {
-	RowVector3d iterationPoint=sensorLoc.colwise().sum()/sensorNumber;			//´«¸ĞÆ÷µÄÖĞĞÄµãÉèÎª³õÊ¼µü´úµã
+	RowVector3d iterationPoint=sensorLoc.colwise().sum()/sensorNumber;			//ä¼ æ„Ÿå™¨çš„ä¸­å¿ƒç‚¹è®¾ä¸ºåˆå§‹è¿­ä»£ç‚¹
 	RowVector3d temp;
-	int iterationStep = 3;														//ÉèÖÃµü´ú²½Êı£¬ÍÆ¼ö2ÒÔÉÏ
-	VectorXd allDist;															//µü´úµãµ½¸÷¸ö´«¸ĞÆ÷µÄ¾àÀëÏòÁ¿
+	int iterationStep = 3;														//è®¾ç½®è¿­ä»£æ­¥æ•°ï¼Œæ¨è2ä»¥ä¸Š
+	VectorXd allDist;															//è¿­ä»£ç‚¹åˆ°å„ä¸ªä¼ æ„Ÿå™¨çš„è·ç¦»å‘é‡
 	allDist.resize(this->sensorNumber);
 	allDist.fill(0);
 	Matrix<double, Dynamic, 4> A;
@@ -43,9 +43,9 @@ double* geigerSolver::doSolve() {
 			A(i, 3) = 1;
 		}
 		B = (arrivalTime - allDist / sonicSpeed).adjoint();
-		//delta = (A.transpose() *A).ldlt().solve(A.transpose() *B);			//³£¹æ¼ÆËã×îĞ¡¶ş³Ë
-		delta = A.colPivHouseholderQr().solve(B);								//QR·Ö½â¼ÆËã×îĞ¡¶ş³Ë
-		//delta = A.jacobiSvd(ComputeThinU | ComputeThinV).solve(B);			//ÔİÊ±²»ÊÊÓÃ
+		//delta = (A.transpose() *A).ldlt().solve(A.transpose() *B);			//å¸¸è§„è®¡ç®—æœ€å°äºŒä¹˜
+		delta = A.colPivHouseholderQr().solve(B);								//QRåˆ†è§£è®¡ç®—æœ€å°äºŒä¹˜
+		//delta = A.jacobiSvd(ComputeThinU | ComputeThinV).solve(B);			//æš‚æ—¶ä¸é€‚ç”¨
 		temp = delta.head(3);
 		iterationPoint = iterationPoint + temp;
 		for (int i = 0; i < sensorNumber; i++) {
@@ -66,7 +66,7 @@ double* geigerSolver::doSolve() {
 		this->isAccurate = false;
 		return LocRes;
 	}
-	if (!this->isInBox()) {									//²»ÔÚÌåÄÚĞèÒªĞŞÕı
+	if (!this->isInBox()) {									//ä¸åœ¨ä½“å†…éœ€è¦ä¿®æ­£
 		this->resRevised();
 	}
 
@@ -74,7 +74,7 @@ double* geigerSolver::doSolve() {
 }
 
 double* geigerSolver::doSolvePlane(){
-	RowVector3d iterationPoint=spaceLimit.transpose()/2; //³õÊ¼µü´úµãÉèÖÃÎªÎï¼şÖĞĞÄ
+	RowVector3d iterationPoint=spaceLimit.transpose()/2; //åˆå§‹è¿­ä»£ç‚¹è®¾ç½®ä¸ºç‰©ä»¶ä¸­å¿ƒ
 	double a = 0.95;
 	double b = 0.95;
 	int step_length = 5;
@@ -127,8 +127,8 @@ void geigerSolver::resRevised() {
 		if (LocRes[i] < 0) LocRes[i] = 0;
 		if (LocRes[i] > this->spaceLimit(i)) LocRes[i] = spaceLimit(i);
 	}
-	//ÔÚĞŞÕıµÄ»ù´¡ÉÏËæ»úÈ¡µã£¬È¡ÆÀ¼Ûº¯Êı×îĞ¡µã×÷Îª½á¹û£¬Ä¬ÈÏ¼ÆËã5´Î
-	//¿ÉÒÔ²»Ê¹ÓÃ
+	//åœ¨ä¿®æ­£çš„åŸºç¡€ä¸Šéšæœºå–ç‚¹ï¼Œå–è¯„ä»·å‡½æ•°æœ€å°ç‚¹ä½œä¸ºç»“æœï¼Œé»˜è®¤è®¡ç®—5æ¬¡
+	//å¯ä»¥ä¸ä½¿ç”¨
 	/*
 	RowVector3d currentPoint;
 	RowVector3d randStep;

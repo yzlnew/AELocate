@@ -13,10 +13,10 @@ planeSolver::planeSolver(double *LocOfSensor, double *TimeOfArrival, float *Limi
 }
 
 double* planeSolver::doSolve() {
-	RowVector2d iterationPoint = sensorLoc.colwise().sum() / sensorNumber;			//´«¸ĞÆ÷µÄÖĞĞÄµãÉèÎª³õÊ¼µü´úµã
+	RowVector2d iterationPoint = sensorLoc.colwise().sum() / sensorNumber;			//ä¼ æ„Ÿå™¨çš„ä¸­å¿ƒç‚¹è®¾ä¸ºåˆå§‹è¿­ä»£ç‚¹
 	RowVector2d temp;
-	int iterationStep = 3;														//ÉèÖÃµü´ú²½Êı£¬ÍÆ¼ö2ÒÔÉÏ
-	VectorXd allDist;															//µü´úµãµ½¸÷¸ö´«¸ĞÆ÷µÄ¾àÀëÏòÁ¿
+	int iterationStep = 3;														//è®¾ç½®è¿­ä»£æ­¥æ•°ï¼Œæ¨è2ä»¥ä¸Š
+	VectorXd allDist;															//è¿­ä»£ç‚¹åˆ°å„ä¸ªä¼ æ„Ÿå™¨çš„è·ç¦»å‘é‡
 	allDist.resize(this->sensorNumber);
 	allDist.fill(0);
 	Matrix<double, Dynamic, 3> A;
@@ -37,9 +37,9 @@ double* planeSolver::doSolve() {
 			A(i, 2) = 1;
 		}
 		B = (arrivalTime - allDist / sonicSpeed).adjoint();
-		//delta = (A.transpose() *A).ldlt().solve(A.transpose() *B);			//³£¹æ¼ÆËã×îĞ¡¶ş³Ë
-		delta = A.colPivHouseholderQr().solve(B);								//QR·Ö½â¼ÆËã×îĞ¡¶ş³Ë
-																				//delta = A.jacobiSvd(ComputeThinU | ComputeThinV).solve(B);			//ÔİÊ±²»ÊÊÓÃ
+		//delta = (A.transpose() *A).ldlt().solve(A.transpose() *B);			//å¸¸è§„è®¡ç®—æœ€å°äºŒä¹˜
+		delta = A.colPivHouseholderQr().solve(B);								//QRåˆ†è§£è®¡ç®—æœ€å°äºŒä¹˜
+																				//delta = A.jacobiSvd(ComputeThinU | ComputeThinV).solve(B);			//æš‚æ—¶ä¸é€‚ç”¨
 		temp = delta.head(2);
 		iterationPoint = iterationPoint + temp;
 		for (int i = 0; i < sensorNumber; i++) {
@@ -52,7 +52,7 @@ double* planeSolver::doSolve() {
 	LocRes[0] = iterationPoint(0);
 	LocRes[1] = iterationPoint(1);
 
-	if (!this->isInBox()) {									//²»ÔÚÌåÄÚĞèÒªĞŞÕı
+	if (!this->isInBox()) {									//ä¸åœ¨ä½“å†…éœ€è¦ä¿®æ­£
 		this->resRevised();
 	}
 

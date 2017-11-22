@@ -9,20 +9,20 @@ using namespace std;
 
 class geigerSolver{
 private:
-	MatrixX3d sensorLoc;					//´«¸ĞÆ÷×ø±ê
-	VectorXd arrivalTime;					//µ½´ïÊ±¼ä
-	Vector3d spaceLimit;					//ÊÔ¼şµÄ¿Õ¼ä³ß´ç
+	MatrixX3d sensorLoc;					//ä¼ æ„Ÿå™¨åæ ‡
+	VectorXd arrivalTime;					//åˆ°è¾¾æ—¶é—´
+	Vector3d spaceLimit;					//è¯•ä»¶çš„ç©ºé—´å°ºå¯¸
 	int sensorNumber;
 	float sonicSpeed;
 
 public:
-	geigerSolver(double *LocOfSensor,double *TimeOfArrival,float *LimitOfSpace,int NumOfSensors,float SpeedOfSound);	//¹¹Ôìº¯Êı
-	double* doSolve();						//Çó½âº¯Êı
-	double* doSolvePlane();					//´«¸ĞÆ÷ÔÚÒ»¸öÆ½ÃæÉÏÇó½â£¬ÓÃÄ£ÄâÍË»ğ
-	double pdist(RowVector3d, RowVector3d);	//ÇóÏòÁ¿¾àÀë
-	double LocRes[3] = { 0,0,0 };			//¶¨Î»½á¹û
-	bool isAccurate = true;					//ÊÇ·ñ×¼È·µÄ±êÖ¾Î»£¬Ä¬ÈÏÎªÕæ
-	void resRevised();						//µ±½á¹ûÓĞÆ«ÀëÊ±£¬ĞŞÕıº¯Êı
-	bool isInBox();							//ÅĞ¶ÏÊÇ·ñÔÚÌåÄÚ
-	double targetFunc(RowVector3d);			//ÆÀ¼Ûº¯Êı
+	geigerSolver(double *LocOfSensor,double *TimeOfArrival,float *LimitOfSpace,int NumOfSensors,float SpeedOfSound);	//æ„é€ å‡½æ•°
+	double* doSolve();						//æ±‚è§£å‡½æ•°
+	double* doSolvePlane();					//ä¼ æ„Ÿå™¨åœ¨ä¸€ä¸ªå¹³é¢ä¸Šæ±‚è§£ï¼Œç”¨æ¨¡æ‹Ÿé€€ç«
+	double pdist(RowVector3d, RowVector3d);	//æ±‚å‘é‡è·ç¦»
+	double LocRes[3] = { 0,0,0 };			//å®šä½ç»“æœ
+	bool isAccurate = true;					//æ˜¯å¦å‡†ç¡®çš„æ ‡å¿—ä½ï¼Œé»˜è®¤ä¸ºçœŸ
+	void resRevised();						//å½“ç»“æœæœ‰åç¦»æ—¶ï¼Œä¿®æ­£å‡½æ•°
+	bool isInBox();							//åˆ¤æ–­æ˜¯å¦åœ¨ä½“å†…
+	double targetFunc(RowVector3d);			//è¯„ä»·å‡½æ•°
 };

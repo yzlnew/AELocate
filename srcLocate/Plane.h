@@ -8,19 +8,19 @@ using namespace std;
 
 class planeSolver {
 private:
-	MatrixX2d sensorLoc;					//Æ½Ãæ´«¸ĞÆ÷×ø±ê
-	VectorXd arrivalTime;					//µ½´ïÊ±¼ä
-	Vector2d spaceLimit;					//Æ½Ãæ³ß´ç
+	MatrixX2d sensorLoc;					//å¹³é¢ä¼ æ„Ÿå™¨åæ ‡
+	VectorXd arrivalTime;					//åˆ°è¾¾æ—¶é—´
+	Vector2d spaceLimit;					//å¹³é¢å°ºå¯¸
 	int sensorNumber;
 	float sonicSpeed;
 
 public:
 	planeSolver(double *LocOfSensor, double *TimeOfArrival, float *LimitOfSpace, int NumOfSensors, 
-					float SpeedOfSound, double Height);	//¹¹Ôìº¯Êı
-	double* doSolve();						//Çó½âº¯Êı
-	double pdist(const RowVector2d& r1, const RowVector2d& r2);	//ÇóÏòÁ¿¾àÀë
-	double LocRes[2] = { 0,0 };			    //¶¨Î»½á¹û
-	bool isAccurate = true;					//ÊÇ·ñ×¼È·µÄ±êÖ¾Î»£¬Ä¬ÈÏÎªÕæ
-	bool isInBox();							//ÅĞ¶ÏÊÇ·ñÔÚÆ½ÃæÄÚ
-	void resRevised();						//µ±½á¹ûÓĞÆ«ÀëÊ±£¬ĞŞÕıº¯Êı
+					float SpeedOfSound, double Height);	//æ„é€ å‡½æ•°
+	double* doSolve();						//æ±‚è§£å‡½æ•°
+	double pdist(const RowVector2d& r1, const RowVector2d& r2);	//æ±‚å‘é‡è·ç¦»
+	double LocRes[2] = { 0,0 };			    //å®šä½ç»“æœ
+	bool isAccurate = true;					//æ˜¯å¦å‡†ç¡®çš„æ ‡å¿—ä½ï¼Œé»˜è®¤ä¸ºçœŸ
+	bool isInBox();							//åˆ¤æ–­æ˜¯å¦åœ¨å¹³é¢å†…
+	void resRevised();						//å½“ç»“æœæœ‰åç¦»æ—¶ï¼Œä¿®æ­£å‡½æ•°
 };

@@ -9,11 +9,11 @@ using namespace std;
 #define PI 3.1415926
 int main()
 {
-	double LocOfSensors[12] = { 0,50,100,0,50,0,50,0,0,50,0,100 };							//°´Ì½Í·Ë³Ğò´æ´¢µÄµ±Ç°¼ÆËãËùÓÃµÄ´«¸ĞÆ÷Î»ÖÃ
-    int NumOfSensors = 4;																			//Ê¹ÓÃµÄ´«¸ĞÆ÷ÊıÁ¿£¬µ±Ç°Îª5
-	float LimitOfSpace[3] = { 100,100,100 };															//ÈıÎ¬ÌåµÄ¿Õ¼äÏŞÖÆ
-    float SpeedOfSound=3200*1000;																	//ÉùËÙ
-    double TimeOfArrival[4]={1242e-7,1290e-7,1298e-7,1385e-7 };								//ÒÀ´ÎµÄµ½´ïÊ±¼ä£¬µ¥Î»Îªs
+	double LocOfSensors[12] = { 0,50,100,0,50,0,50,0,0,50,0,100 };							//æŒ‰æ¢å¤´é¡ºåºå­˜å‚¨çš„å½“å‰è®¡ç®—æ‰€ç”¨çš„ä¼ æ„Ÿå™¨ä½ç½®
+    int NumOfSensors = 4;																			//ä½¿ç”¨çš„ä¼ æ„Ÿå™¨æ•°é‡ï¼Œå½“å‰ä¸º5
+	float LimitOfSpace[3] = { 100,100,100 };															//ä¸‰ç»´ä½“çš„ç©ºé—´é™åˆ¶
+    float SpeedOfSound=3200*1000;																	//å£°é€Ÿ
+    double TimeOfArrival[4]={1242e-7,1290e-7,1298e-7,1385e-7 };								//ä¾æ¬¡çš„åˆ°è¾¾æ—¶é—´ï¼Œå•ä½ä¸ºs
     
 	geigerSolver Test(LocOfSensors, TimeOfArrival, LimitOfSpace, NumOfSensors, SpeedOfSound);
     double* Res=Test.doSolvePlane();
