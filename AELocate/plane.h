@@ -16,7 +16,7 @@ private:
 
 public:
 	planeSolver(double *LocOfSensor, double *TimeOfArrival, float *LimitOfSpace, int NumOfSensors, 
-					float SpeedOfSound, double Height);	//构造函数
+					float SpeedOfSound);	//构造函数
 	double* doSolve();						//求解函数
 	double pdist(const RowVector2d& r1, const RowVector2d& r2);	//求向量距离
 	double LocRes[2] = { 0,0 };			    //定位结果

@@ -1,4 +1,4 @@
-#include "Geiger.h"
+#include "geiger.h"
 #include <math.h>
 
 geigerSolver::geigerSolver(double *LocOfSensor,double *TimeOfArrival,float *LimitOfSpace,int NumOfSensors,float SpeedOfSound){

@@ -1,4 +1,4 @@
-#include "Bottom.h"
+#include "bottom.h"
 #include <math.h>
 
 bottomSolver::bottomSolver(double *LocOfSensor, double *TimeOfArrival, 

@@ -1,8 +1,9 @@
 #include <iostream>
-#include "Geiger.h"
-#include "Sphere.h"
-#include "Plane.h"
-#include "Bottom.h"
+#include "geiger.h"
+#include "sphere.h"
+#include "plane.h"
+#include "bottom.h"
+
 using namespace Eigen;
 using namespace std;
 

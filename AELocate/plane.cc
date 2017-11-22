@@ -1,4 +1,4 @@
-#include "Plane.h"
+#include "plane.h"
 #include <math.h>
 
 planeSolver::planeSolver(double *LocOfSensor, double *TimeOfArrival, float *LimitOfSpace, 
